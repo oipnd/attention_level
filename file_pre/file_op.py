@@ -1,31 +1,30 @@
-
 import os
 
 
 def ReadDataFromTextFile(FilePath):
     file_list = os.listdir(FilePath)
     mouse_data = []
-    NameData = []
+    name_data = []
     for i in range(len(file_list)):
-        SectionList = os.listdir(FilePath + '\\' + file_list[i])
-        for S in SectionList:
-            extraStr = '\\' + S
-            HumanPath = FilePath + '\\' + file_list[i]
-            each_file = HumanPath + os.sep + S
-            txtList = os.listdir(HumanPath + extraStr)
+        section_list = os.listdir(FilePath + '\\' + file_list[i])
+        for S in section_list:
+            extra_str = '\\' + S
+            human_path = FilePath + '\\' + file_list[i]
+            each_file = human_path + os.sep + S
+            txt_list = os.listdir(human_path + extra_str)
 
-            SingleFileData = []
-            SingleName = []
-            for j in range(len(txtList)):
-                f = open(each_file + os.sep + txtList[j], 'r')
+            single_file_data = []
+            single_name = []
+            for j in range(len(txt_list)):
+                f = open(each_file + os.sep + txt_list[j], 'r')
                 linesAll = f.readlines()
                 f.close()
 
-                SingleFileData.append(linesAll)
-                SingleName.append(txtList[j])
-            mouse_data.append(SingleFileData)
-            NameData.append(SingleName)
-    return mouse_data, NameData
+                single_file_data.append(linesAll)
+                single_name.append(txt_list[j])
+            mouse_data.append(single_file_data)
+            name_data.append(single_name)
+    return mouse_data, name_data
 
 
 def RenameFileWithSessions(FilePath):
@@ -52,5 +51,5 @@ def RenameFileWithSessions(FilePath):
 if __name__ == '__main__':
     path = "D:\data\pc"
     data1, data2 = ReadDataFromTextFile(path)
-    print(data1)
-    print(data2)
+    print(len(data1))
+    print(len(data2))
